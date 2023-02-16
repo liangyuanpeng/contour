@@ -30,7 +30,7 @@ spec:
           - envoy
           - shutdown-manager
         image: ghcr.io/projectcontour/contour:main
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         lifecycle:
           preStop:
             exec:
@@ -98,17 +98,17 @@ spec:
       - args:
         - bootstrap
         - /config/envoy.json
-        - --xds-address=contour
+        - --xds-address=192.168.3.228
         - --xds-port=8001
         - --xds-resource-version=v3
         - --resources-dir=/config/resources
-        - --envoy-cafile=/certs/ca.crt
-        - --envoy-cert-file=/certs/tls.crt
-        - --envoy-key-file=/certs/tls.key
+        # - --envoy-cafile=/certs/ca.crt
+        # - --envoy-cert-file=/certs/tls.crt
+        # - --envoy-key-file=/certs/tls.key
         command:
         - contour
         image: ghcr.io/projectcontour/contour:main
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: envoy-initconfig
         volumeMounts:
         - name: envoy-config

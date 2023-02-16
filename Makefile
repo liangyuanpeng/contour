@@ -50,7 +50,7 @@ BUILD_CGO_ENABLED ?= 0
 BUILD_GOPRIVATE ?= ""
 
 # Go module mirror to use.
-BUILD_GOPROXY ?= https://proxy.golang.org
+BUILD_GOPROXY ?= https://goproxy.cn
 
 # Checksum db to use.
 BUILD_GOSUMDB ?= sum.golang.org
@@ -294,6 +294,19 @@ site-devel: ## Launch the website
 site-check: ## Test the site's links
 	# TODO: Clean up to use htmltest
 
+kind: container
+	kind create cluster --config /home/lan/repo/git/maquan/deploy/dev/kindconfig/kind_local.yaml --image kindest/node:v1.26.0@sha256:691e24bd2417609db7e589e1a479b902d2e209892a10ce375fab60a8407c7352
+	kind load docker-image $(IMAGE):$(VERSION)
+	kind load docker-image envoyproxy/envoy:v1.25.1
+	sed 's/{VERSION}/$(VERSION)/g' contour.yaml > contour_dev.yaml 
+	kubectl apply -f contour_dev.yaml
+
+inkind: container 
+	kind load docker-image $(IMAGE):$(VERSION)
+	sed 's/{VERSION}/$(VERSION)/g' contour.yaml > contour_dev.yaml 
+	kubectl apply -f contour_dev.yaml
+
+	
 
 # Tools for testing and troubleshooting
 

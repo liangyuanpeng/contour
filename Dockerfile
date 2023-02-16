@@ -2,7 +2,8 @@ ARG BUILD_BASE_IMAGE
 
 # The build image uses the os/arch of the host (i.e. $BUILDPLATFORM),
 # and golang handles the cross-compilation to $TARGETOS/$TARGETARCH.
-FROM --platform=$BUILDPLATFORM $BUILD_BASE_IMAGE AS build
+#FROM --platform=$BUILDPLATFORM $BUILD_BASE_IMAGE AS build
+FROM  $BUILD_BASE_IMAGE AS build
 WORKDIR /contour
 
 ARG BUILD_GOPRIVATE
