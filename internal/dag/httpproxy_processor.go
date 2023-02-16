@@ -673,6 +673,7 @@ func (p *HTTPProxyProcessor) computeRoutes(
 		if includedProxy.Spec.VirtualHost != nil {
 			validCond.AddErrorf(contour_api_v1.ConditionTypeIncludeError, "RootIncludesRoot",
 				"root httpproxy cannot include another root httpproxy 123")
+			log.Println("==================RootIncludesRoot root httpproxy cannot include another root httpproxy 123")
 
 			if len(include.Conditions) > 0 {
 				routes = append(routes, &Route{

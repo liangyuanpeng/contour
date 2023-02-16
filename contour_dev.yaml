@@ -7045,7 +7045,7 @@ spec:
     spec:
       containers:
       - name: contour
-        image: ghcr.io/projectcontour/contour:2287c8e4
+        image: ghcr.io/projectcontour/contour:481d9744
         imagePullPolicy: IfNotPresent
         command:
         - contour
@@ -7256,7 +7256,7 @@ metadata:
   name: contour
   namespace: projectcontour
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -7294,7 +7294,7 @@ spec:
         - --contour-key-file=/certs/tls.key
         - --config-path=/config/contour.yaml
         command: ["contour"]
-        image: ghcr.io/projectcontour/contour:2287c8e4
+        image: ghcr.io/projectcontour/contour:481d9744
         imagePullPolicy: IfNotPresent
         name: contour
         ports:
@@ -7383,7 +7383,7 @@ spec:
         args:
           - envoy
           - shutdown-manager
-        image: ghcr.io/projectcontour/contour:2287c8e4
+        image: ghcr.io/projectcontour/contour:481d9744
         imagePullPolicy: IfNotPresent
         lifecycle:
           preStop:
@@ -7461,7 +7461,7 @@ spec:
         - --envoy-key-file=/certs/tls.key
         command:
         - contour
-        image: ghcr.io/projectcontour/contour:2287c8e4
+        image: ghcr.io/projectcontour/contour:481d9744
         imagePullPolicy: IfNotPresent
         name: envoy-initconfig
         volumeMounts:
