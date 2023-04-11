@@ -10679,7 +10679,7 @@ func TestDAGInsert(t *testing.T) {
 			want: listeners(
 				&Listener{
 					Name: HTTP_LISTENER_NAME,
-					Port: 80,
+					Port: 8080,
 					VirtualHosts: virtualhosts(
 						virtualhost("example.com", &Route{
 							PathMatchCondition: prefixString("/finance"),
